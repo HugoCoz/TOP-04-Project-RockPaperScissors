@@ -3,7 +3,7 @@
 L'utilisateur choisit entre pierre, feuille ou ciseau
 L'ordinateur choisit au hasard pierre, feuille ou ciseaux
 
-Boucle pour vérifier qui gagne :
+On vérifie qui gagne :
     Si user = pierre && ordi = pierre
     Si user = pierre && ordi = feuille
     Si user = pierre && ordi = ciseaux
@@ -16,6 +16,7 @@ Boucle pour vérifier qui gagne :
 
 On incrémente le score de l'ordi s'il gagne
 On incrémente le score de l'user s'il gagne
+On ne chnage pas le score si nul
 
 Faire apparaitre un message indiquant victoire, nul ou perdu
 Faire apparaitre le score actuel
@@ -48,11 +49,23 @@ function playRound(playerSelection, computerSelection) {
     let result = "";
 
 
-    if ((playerSelection = "Pierre") && (computerSelection = "Pierre")) {
+    if (playerSelection == "Pierre" && computerSelection == "Pierre") {
         result = equalResult;
-    } else if ((playerSelection = "Pierre") && (computerSelection = "Feuille")) {
+    } else if (playerSelection == "Pierre" && computerSelection == "Feuille") {
         result = lostResult;
-    } else if ((playerSelection = "Pierre") && (computerSelection = "Ciseaux")) {
+    } else if (playerSelection == "Pierre" && computerSelection == "Ciseaux") {
+        result = winResult;
+    } else if (playerSelection == "Feuille" && computerSelection == "Feuille") {
+        result = equalResult;
+    } else if (playerSelection == "Feuille" && computerSelection == "Ciseaux") {
+        result = lostResult;
+    } else if (playerSelection == "Feuille" && computerSelection == "Pierre") {
+        result = winResult;
+    } else if (playerSelection == "Ciseaux" && computerSelection == "Ciseaux") {
+        result = equalResult;
+    } else if (playerSelection == "Ciseaux" && computerSelection == "Pierre") {
+        result = lostResult;
+    } else {
         result = winResult;
     }
     

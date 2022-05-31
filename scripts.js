@@ -22,9 +22,8 @@ Faire apparaitre un message indiquant victoire, nul ou perdu
 Faire apparaitre le score actuel
 */
 
-let playableRounds = 1;
-const playerSelection = prompt("Choisissez entre : Pierre, Feuille, ou Ciseaux").toLowerCase();
-const computerSelection = computerPlay();
+let playerSelection = "";
+let computerSelection = computerPlay();
 
 function computerPlay() {
     let randomAction = Math.floor(Math.random()*3);
@@ -43,33 +42,68 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
 
-    const winResult = "Vous avez gagné !";
-    const lostResult = "Vous avez perdu ...";
-    const equalResult = "Match nul.";
-    let result = "";
+    let result = 0;
 
 
     if (playerSelection == "pierre" && computerSelection == "pierre") {
-        result = equalResult;
+        result = 0;
+        return result;
     } else if (playerSelection == "pierre" && computerSelection == "feuille") {
-        result = lostResult;
+        result = -1;
+        return result;
     } else if (playerSelection == "pierre" && computerSelection == "ciseaux") {
-        result = winResult;
+        result = 1;
+        return result;
     } else if (playerSelection == "feuille" && computerSelection == "feuille") {
-        result = equalResult;
+        result = 0;
+        return result;
     } else if (playerSelection == "feuille" && computerSelection == "ciseaux") {
-        result = lostResult;
+        result = -1;
+        return result;
     } else if (playerSelection == "feuille" && computerSelection == "pierre") {
-        result = winResult;
+        result = 1;
+        return result;
     } else if (playerSelection == "ciseaux" && computerSelection == "ciseaux") {
-        result = equalResult;
+        result = 0;
+        return result;
     } else if (playerSelection == "ciseaux" && computerSelection == "pierre") {
-        result = lostResult;
-    } else {
-        result = winResult;
+        result = -1;
+        return result;
     }
     
-    return result;
 };
 
-console.log(playRound(playerSelection, computerSelection));
+
+
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    let playableRounds = 5;
+
+    for (i=0; i<playableRounds; i++) {
+        computerPlay();
+        playerSelection = prompt("Choisissez entre : Pierre, Feuille, ou Ciseaux").toLowerCase();
+        playRound(playerSelection, computerSelection);
+        if (playRound() == 1) {
+            playerScore += 1;
+            console.log("Manche gagnée !");
+            console.log("Score actuel : " + playerScore + " points (joueur) contre " + computerScore + " points (ordinateur)");
+        } else if (playRound() == -1) {
+            computerScore +=1;
+            console.log("Manche perdue ...");
+            console.log("Score actuel : " + playerScore + " points (joueur) contre " + computerScore + " points (ordinateur)");
+        } else {
+            console.log("Match nul.")
+            console.log("Score actuel : " + playerScore + " points (joueur) contre " + computerScore + " points (ordinateur)");
+        }
+    }
+
+    if (playerScore > computerScore) {
+        console.log("Félicitations, vous avez battu l'ordinateur !");
+    } else {
+        console.log("Vous avez perdu contre l'ordinateur.");
+    }
+}
+
+game();

@@ -21,25 +21,42 @@ Faire apparaitre un message indiquant victoire, nul ou perdu
 Faire apparaitre le score actuel
 */
 
-let computerSelection = "";
-let playerSelection = prompt("Choisissez entre : Pierre, Feuille, ou ciseaux");
+let playableRounds = 1;
+const playerSelection = prompt("Choisissez entre : Pierre, Feuille, ou Ciseaux");
+const computerSelection = computerPlay();
 
-function computerPLay() {
+function computerPlay() {
     let randomAction = Math.floor(Math.random()*3);
     if (randomAction === 0) {
-        computerSelection = "Pierre";
-        return computerSelection;
+        const choice1 = "Pierre";
+        return choice1;
     } else if (randomAction === 1) {
-        computerSelection = "Feuille";
-        return computerSelection;
+        const choice2 = "Feuille";
+        return choice2;
     } else {
-        computerSelection = "Ciseaux";
-        return computerSelection;
+        const choice3 = "Ciseaux";
+        return choice3;
     }
 };
 
-function playRound(playerSelection = playerSelection, computerSelection = computerSelection) {
-    switch {
-        case 
+
+function playRound(playerSelection, computerSelection) {
+
+    const winResult = "Vous avez gagné !";
+    const lostResult = "Vous avez perdu ...";
+    const equalResult = "Match nul.";
+    let result = "";
+
+
+    if ((playerSelection = "Pierre") && (computerSelection = "Pierre")) {
+        result = equalResult;
+    } else if ((playerSelection = "Pierre") && (computerSelection = "Feuille")) {
+        result = lostResult;
+    } else if ((playerSelection = "Pierre") && (computerSelection = "Ciseaux")) {
+        result = winResult;
     }
-}
+    
+    return result;
+};
+
+console.log(playRound(playerSelection, computerSelection));

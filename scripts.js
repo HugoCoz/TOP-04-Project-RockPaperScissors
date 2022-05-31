@@ -23,19 +23,19 @@ Faire apparaitre le score actuel
 */
 
 let playableRounds = 1;
-const playerSelection = prompt("Choisissez entre : Pierre, Feuille, ou Ciseaux");
+const playerSelection = prompt("Choisissez entre : Pierre, Feuille, ou Ciseaux").toLowerCase();
 const computerSelection = computerPlay();
 
 function computerPlay() {
     let randomAction = Math.floor(Math.random()*3);
     if (randomAction === 0) {
-        const choice1 = "Pierre";
+        const choice1 = "pierre";
         return choice1;
     } else if (randomAction === 1) {
-        const choice2 = "Feuille";
+        const choice2 = "feuille";
         return choice2;
     } else {
-        const choice3 = "Ciseaux";
+        const choice3 = "ciseaux";
         return choice3;
     }
 };
@@ -49,21 +49,21 @@ function playRound(playerSelection, computerSelection) {
     let result = "";
 
 
-    if (playerSelection == "Pierre" && computerSelection == "Pierre") {
+    if (playerSelection == "pierre" && computerSelection == "pierre") {
         result = equalResult;
-    } else if (playerSelection == "Pierre" && computerSelection == "Feuille") {
+    } else if (playerSelection == "pierre" && computerSelection == "feuille") {
         result = lostResult;
-    } else if (playerSelection == "Pierre" && computerSelection == "Ciseaux") {
+    } else if (playerSelection == "pierre" && computerSelection == "ciseaux") {
         result = winResult;
-    } else if (playerSelection == "Feuille" && computerSelection == "Feuille") {
+    } else if (playerSelection == "feuille" && computerSelection == "feuille") {
         result = equalResult;
-    } else if (playerSelection == "Feuille" && computerSelection == "Ciseaux") {
+    } else if (playerSelection == "feuille" && computerSelection == "ciseaux") {
         result = lostResult;
-    } else if (playerSelection == "Feuille" && computerSelection == "Pierre") {
+    } else if (playerSelection == "feuille" && computerSelection == "pierre") {
         result = winResult;
-    } else if (playerSelection == "Ciseaux" && computerSelection == "Ciseaux") {
+    } else if (playerSelection == "ciseaux" && computerSelection == "ciseaux") {
         result = equalResult;
-    } else if (playerSelection == "Ciseaux" && computerSelection == "Pierre") {
+    } else if (playerSelection == "ciseaux" && computerSelection == "pierre") {
         result = lostResult;
     } else {
         result = winResult;

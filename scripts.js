@@ -1,109 +1,77 @@
-/*
-
-L'utilisateur choisit entre pierre, feuille ou ciseau
-L'ordinateur choisit au hasard pierre, feuille ou ciseaux
-
-On vérifie qui gagne :
-    Si user = pierre && ordi = pierre
-    Si user = pierre && ordi = feuille
-    Si user = pierre && ordi = ciseaux
-    Si user = feuille && ordi = pierre
-    Si user = feuille && ordi = feuille
-    Si user = feuille && ordi = ciseaux
-    Si user = ciseaux && ordi = pierre
-    Si user = ciseaux && ordi = feuille
-    Si user = ciseaux && ordi = ciseaux
-
-On incrémente le score de l'ordi s'il gagne
-On incrémente le score de l'user s'il gagne
-On ne chnage pas le score si nul
-
-Faire apparaitre un message indiquant victoire, nul ou perdu
-Faire apparaitre le score actuel
-*/
-
-let playerSelection = "";
+let playerSelection = prompt("Choose between : Rock, Paper, Scissors").toLowerCase();
 let computerSelection = computerPlay();
 
 function computerPlay() {
     let randomAction = Math.floor(Math.random()*3);
+    let choice = "";
     if (randomAction === 0) {
-        const choice1 = "pierre";
-        return choice1;
+        choice = "rock";
+        return choice;
     } else if (randomAction === 1) {
-        const choice2 = "feuille";
-        return choice2;
+        choice = "paper";
+        return choice;
     } else {
-        const choice3 = "ciseaux";
-        return choice3;
-    }
-};
+        choice = "scissors";
+        return choice;
+    };
 
+};
 
 function playRound(playerSelection, computerSelection) {
 
-    let result = 0;
-
-
-    if (playerSelection == "pierre" && computerSelection == "pierre") {
-        result = 0;
-        return result;
-    } else if (playerSelection == "pierre" && computerSelection == "feuille") {
-        result = -1;
-        return result;
-    } else if (playerSelection == "pierre" && computerSelection == "ciseaux") {
-        result = 1;
-        return result;
-    } else if (playerSelection == "feuille" && computerSelection == "feuille") {
-        result = 0;
-        return result;
-    } else if (playerSelection == "feuille" && computerSelection == "ciseaux") {
-        result = -1;
-        return result;
-    } else if (playerSelection == "feuille" && computerSelection == "pierre") {
-        result = 1;
-        return result;
-    } else if (playerSelection == "ciseaux" && computerSelection == "ciseaux") {
-        result = 0;
-        return result;
-    } else if (playerSelection == "ciseaux" && computerSelection == "pierre") {
-        result = -1;
-        return result;
-    }
+    if (playerSelection == "rock" && computerSelection == "rock") {
+        return "draw";
+    } else if (playerSelection == "rock" && computerSelection == "paper") {
+        return "lost";
+    } else if (playerSelection == "rock" && computerSelection == "scissors") {
+        return "win";
+    } else if (playerSelection == "paper" && computerSelection == "paper") {
+        return "draw";
+    } else if (playerSelection == "paper" && computerSelection == "scissors") {
+        return "lost";
+    } else if (playerSelection == "paper" && computerSelection == "rock") {
+        return "win";
+    } else if (playerSelection == "scissors" && computerSelection == "scissors") {
+        return "draw";
+    } else if (playerSelection == "scissors" && computerSelection == "rock") {
+        return "lost";
+    } else if (playerSelection == "scissors" && computerSelection == "paper") {
+        return "win";
+    } else {
+        console.log("bad input, try again");
+    };
     
 };
-
-
-
 
 function game() {
     let playerScore = 0;
     let computerScore = 0;
-    let playableRounds = 5;
+    let playableRounds = 1;
 
     for (i=0; i<playableRounds; i++) {
-        computerPlay();
-        playerSelection = prompt("Choisissez entre : Pierre, Feuille, ou Ciseaux").toLowerCase();
         playRound(playerSelection, computerSelection);
-        if (playRound() == 1) {
+        if (playRound() == "win") {
             playerScore += 1;
-            console.log("Manche gagnée !");
-            console.log("Score actuel : " + playerScore + " points (joueur) contre " + computerScore + " points (ordinateur)");
-        } else if (playRound() == -1) {
+            console.log("Round won !");
+            console.log(computerPlay());
+            console.log("Score : " + playerScore + " points (player) vs " + computerScore + " points (computer)");
+        } else if (playRound() == "lost") {
             computerScore +=1;
             console.log("Manche perdue ...");
-            console.log("Score actuel : " + playerScore + " points (joueur) contre " + computerScore + " points (ordinateur)");
+            console.log(computerPlay());
+            console.log("Score : " + playerScore + " points (player) vs) " + computerScore + " points (computer)");
         } else {
-            console.log("Match nul.")
-            console.log("Score actuel : " + playerScore + " points (joueur) contre " + computerScore + " points (ordinateur)");
-        }
-    }
+            console.log("Draw.");
+            console.log(computerPlay());
+            console.log("Score : " + playerScore + " points (player) vs) " + computerScore + " points (computer)");
+        };
+    };
 
     if (playerScore > computerScore) {
-        console.log("Félicitations, vous avez battu l'ordinateur !");
+        console.log("Congratulations, you beat the computer !");
     } else {
-        console.log("Vous avez perdu contre l'ordinateur.");
-    }
-}
+        console.log("Sorry, you lost against Windows XP");
+    };
+};
 
 game();

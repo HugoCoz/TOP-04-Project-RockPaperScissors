@@ -1,3 +1,13 @@
+let playerSelection = "";
+
+const choiceBtn = document.querySelectorAll(".choice-btns > button").forEach(btn => {
+        btn.addEventListener('click', function (e) {
+        playerSelection = e.target.textContent;
+        game();
+    });
+});
+
+
 function computerPlay() {
     let randomAction = Math.floor(Math.random()*3);
     let choice = "";
@@ -12,12 +22,6 @@ function computerPlay() {
         return choice;
     };
 
-};
-
-
-function playerPlay() {
-    let choice = prompt("Choose between : Rock, Paper, Scissors").toLowerCase();
-    return choice;
 };
 
 
@@ -64,18 +68,14 @@ function playRound(playerSelection, computerSelection) {
 };
 
 
-function game() {
-
+function game(rounds = 1) {
+    let computerSelection = computerPlay();
+    
     let playerScore = 0;
     let computerScore = 0;
     
-    let playableRounds = 2;
 
-    for (i=0; i<playableRounds; i++) {
-        let playerSelection = playerPlay();
-        let computerSelection = computerPlay();
-        
-        playRound(playerSelection, computerSelection);
+    for (i=0; i<rounds; i++) {        
         
         if (playRound(playerSelection, computerSelection) == "win") {
             playerScore += 1;
@@ -91,8 +91,3 @@ function game() {
         }
     }
 };
-
-//test
-
-
-game();

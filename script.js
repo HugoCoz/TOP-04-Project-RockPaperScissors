@@ -145,10 +145,4 @@ function game(result, roundChoice) {
         }
     };    
 
-<<<<<<< HEAD
-
-
-game();
-=======
 };
->>>>>>> rps-ui

@@ -1,6 +1,6 @@
 //variables
 let playerSelection = "";
-let computerSelection = computerPlay();
+let computerSelection = "";
 let roundChoice = 0;
 let result = "";
 let playerScore = 0;
@@ -69,34 +69,28 @@ function playRound(playerSelection) {
 
     computerSelection = computerPlay();
 
-    switch(playerSelection) {
-        case "rock":
-            if (computerSelection == "rock") {
-                result = "draw";
-            } else if (computerSelection == "paper") {
-                result = "lost";
-            } else {
-                result = "win";
-            };
-        case "paper":
-            if (computerSelection == "rock") {
-                result = "win";
-            } else if (computerSelection == "paper") {
-                result = "draw";
-            } else {
-                result = "lost";
-            };
-        case "scissors":
-            if (computerSelection == "rock") {
-                result = "lost";
-            } else if (computerSelection == "paper") {
-                result = "win";
-            } else {
-                result = "draw";
-            };
-        default:
-            break;
+    if(playerSelection == "rock" && computerSelection == "rock") {
+        result = "draw";
+    } else if(playerSelection == "rock" && computerSelection == "paper") {
+        result = "lost";
+    } else if(playerSelection == "rock" && computerSelection == "scissors") {
+        result = "win";
+    } else if(playerSelection == "paper" && computerSelection == "rock") {
+        result = "win";
+    } else if(playerSelection == "paper" && computerSelection == "paper") {
+        result = "draw";
+    } else if(playerSelection == "paper" && computerSelection == "scissors") {
+        result = "lost";
+    } else if(playerSelection == "scissors" && computerSelection == "rock") {
+        result = "lost";
+    } else if(playerSelection == "scissors" && computerSelection == "paper") {
+        result = "win";
+    } else if(playerSelection == "scissors" && computerSelection == "scissors") {
+        result = "draw";
+    } else {
+        result = "undefined data type";
     };
+    
     roundChoice -= 1;
     game(result, roundChoice);
 };
